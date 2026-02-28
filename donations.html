@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donations · Paul Boit Boys High School</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 40px;
+            }
+        }
+        :root {
+            --primary: #0a2b4c;
+            --primary-light: #1e4a7a;
+            --accent: #c9a357;
+            --accent-light: #e0b87b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #5e6f88;
+            --border-light: #e9edf2;
+        }
+
+        /* ===== TOP BAR (exactly as before) ===== */
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .top-bar .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            justify-content: center;
+        }
+        @media (min-width: 640px) {
+            .top-bar .container {
+                justify-content: flex-end;
+            }
+        }
+        .top-bar i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        /* ===== NAVBAR (exactly as before, with OUR SCHOOL dropdown) ===== */
+        .navbar {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+        @media (min-width: 480px) {
+            .logo-img {
+                height: 70px;
+            }
+        }
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        @media (min-width: 480px) {
+            .logo-text h1 {
+                font-size: 2rem;
+            }
+        }
+        .logo-text span {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: var(--accent);
+            display: block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        @media (min-width: 480px) {
+            .logo-text span {
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+        }
+        .menu-toggle {
+            display: block;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            transition: color 0.2s;
+            z-index: 1001;
+        }
+        .menu-toggle:hover {
+            color: var(--accent);
+        }
+        @media (min-width: 900px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+        .nav-links {
+            display: none;
+            width: 100%;
+            list-style: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+        }
+        .nav-links.active {
+            display: flex;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: 0.2s;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            padding: 10px 0;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+        .dropdown-menu {
+            list-style: none;
+            background: white;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 10px 0;
+            min-width: 220px;
+            z-index: 1001;
+        }
+        .dropdown-menu li a {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            text-transform: none;
+            font-weight: 500;
+        }
+        .dropdown-menu li a:hover {
+            background: var(--bg-light);
+            color: var(--accent);
+        }
+        @media (min-width: 900px) {
+            .nav-links {
+                display: flex !important;
+                width: auto;
+                flex-direction: row;
+                gap: 1.8rem;
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0;
+                align-items: center;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0;
+            }
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                display: none;
+            }
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            .dropdown:hover .dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+        }
+        @media (max-width: 899px) {
+            .dropdown-menu {
+                display: none;
+                margin-top: 5px;
+                margin-left: 20px;
+                box-shadow: none;
+                border: none;
+                border-left: 2px solid var(--accent);
+            }
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            .dropdown-toggle i {
+                margin-left: auto;
+            }
+            .dropdown.active .dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+        }
+
+        /* ===== PAGE HERO (with background image, same style as other pages) ===== */
+        .page-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            isolation: isolate;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(95deg, rgba(10,43,76,0.8) 0%, rgba(10,43,76,0.5) 100%);
+            z-index: 1;
+        }
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            padding: 60px 0;
+        }
+        .content-section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .two-col-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .two-col-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+
+        .donation-options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        @media (min-width: 640px) {
+            .donation-options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .donation-options-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .donation-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .donation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        .donation-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .donation-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .donation-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .highlight-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .stat-circle {
+            text-align: center;
+        }
+        .stat-circle .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .stat-circle .label {
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .cta-box {
+            background: var(--primary);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .cta-box .btn {
+            background: var(--accent);
+            color: var(--primary);
+            margin-top: 20px;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        .footer a {
+            color: #b0c4d9;
+            text-decoration: none;
+        }
+        .footer .container > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media (min-width: 640px) {
+            .footer .container > div {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        hr {
+            border-color: #1e4a6f;
+            margin: 40px 0 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR (exactly as in template) -->
+<div class="top-bar">
+    <div class="container">
+        <span><i class="fas fa-phone-alt"></i> +254 712 345 678</span>
+        <span><i class="fas fa-envelope"></i> info@paulboitboys.sc.ke</span>
+        <span><i class="fas fa-map-marker-alt"></i> Turbo, Uasin Gishu</span>
+    </div>
+</div>
+
+<!-- NAVBAR (exactly as in template, with OUR SCHOOL dropdown) -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo-container">
+            <img src="https://i.pinimg.com/736x/6b/b2/b9/6bb2b98663efa77ce2d358a5f4f029e6.jpg" alt="Paul Boit Boys School Crest" class="logo-img">
+            <div class="logo-text">
+                <h1>Paul Boit Boys</h1>
+                <span>HIGH SCHOOL · EST. 1985</span>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">OUR SCHOOL <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#">Our Stories</a></li>
+                    <li><a href="#">Alumni</a></li>
+                    <li><a href="#">An Inspired School</a></li>
+                    <li><a href="#">Academic Research</a></li>
+                    <li><a href="#">Accreditations</a></li>
+                    <li><a href="#">Patrons</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="schoollife.html">School Life</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="donations.html" style="color: var(--accent);">Donations</a></li>
+            <li><a href="contacts.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO SECTION with background image (below header) -->
+<section class="page-hero">
+    <div class="container">
+        <h1 data-aos="fade-up">Support Paul Boit Boys</h1>
+        <p data-aos="fade-up" data-aos-delay="50">Your generosity shapes future leaders. Every contribution makes a lasting impact on our students and community.</p>
+    </div>
+</section>
+
+<!-- INTRODUCTION: Why Donate? -->
+<section class="content-section">
+    <div class="container">
+        <div class="two-col-layout">
+            <div data-aos="fade-right">
+                <h2 class="section-title">Together We Build</h2>
+                <div class="section-divider"></div>
+                <p style="font-size: 1.1rem;">Paul Boit Boys High School is a public institution, but government funding alone cannot cover all our needs. Donations from alumni, parents, and friends enable us to provide exceptional facilities, scholarships, and programmes that transform lives.</p>
+                <p>Your support – whether large or small – helps us maintain our tradition of excellence and ensures that every boy, regardless of background, can access quality education in a nurturing environment.</p>
+                <div class="highlight-stats">
+                    <div class="stat-circle">
+                        <div class="number">500+</div>
+                        <div class="label">Scholarships</div>
+                    </div>
+                    <div class="stat-circle">
+                        <div class="number">3</div>
+                        <div class="label">New Labs</div>
+                    </div>
+                    <div class="stat-circle">
+                        <div class="number">100%</div>
+                        <div class="label">Goes to Students</div>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Students in classroom" class="content-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WAYS TO DONATE (4 cards) -->
+<section class="content-section" style="background: var(--bg-light);">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Ways to Give</h2>
+        <div class="section-divider" data-aos="fade-up"></div>
+        <div class="donation-options-grid">
+            <div class="donation-card" data-aos="zoom-in">
+                <i class="fas fa-university"></i>
+                <h3>Bank Transfer</h3>
+                <p>Account Name: Paul Boit Boys High School<br>Bank: Equity Bank<br>Account: 1234567890<br>Branch: Turbo</p>
+            </div>
+            <div class="donation-card" data-aos="zoom-in" data-aos-delay="50">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>M-Pesa PayBill</h3>
+                <p>Business No: 404040<br>Account No: DONATE<br>Available 24/7, instant confirmation.</p>
+            </div>
+            <div class="donation-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-gift"></i>
+                <h3>Sponsor a Student</h3>
+                <p>Cover full or partial fees for a deserving boy. Receive updates and letters from your sponsored student.</p>
+            </div>
+            <div class="donation-card" data-aos="zoom-in" data-aos-delay="150">
+                <i class="fas fa-tools"></i>
+                <h3>Infrastructure & Equipment</h3>
+                <p>Donate lab equipment, library books, or sports gear. Contact us for a wish list.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- IMPACT SECTION (image + text) -->
+<section class="content-section">
+    <div class="container">
+        <div class="two-col-layout">
+            <div data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Science lab" class="content-image">
+            </div>
+            <div data-aos="fade-left">
+                <h2 class="section-title">Your Impact in Action</h2>
+                <div class="section-divider"></div>
+                <p>Thanks to past donations, we have:</p>
+                <ul style="list-style: none; margin-top: 20px;">
+                    <li style="margin-bottom: 15px; display: flex; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.2rem;"></i> <strong>Built a modern science laboratory</strong> – now serving 300+ students weekly.</li>
+                    <li style="margin-bottom: 15px; display: flex; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.2rem;"></i> <strong>Provided 50 full scholarships</strong> to bright students from disadvantaged backgrounds.</li>
+                    <li style="margin-bottom: 15px; display: flex; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.2rem;"></i> <strong>Renovated the school library</strong> with over 2,000 new books and e‑learning stations.</li>
+                    <li style="margin-bottom: 15px; display: flex; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.2rem;"></i> <strong>Upgraded sports facilities</strong> – new rugby posts, athletics track, and equipment.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIAL / SUPPORTER SPOTLIGHT -->
+<section class="content-section" style="background: var(--bg-light);">
+    <div class="container">
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;" data-aos="fade-up">
+            <i class="fas fa-quote-left" style="font-size: 3rem; color: var(--accent); opacity: 0.5;"></i>
+            <p style="font-size: 1.5rem; font-style: italic; margin: 20px 0;">"I donated to build the new computer lab because I believe in giving back. Seeing the boys' excitement when they use the facility is priceless."</p>
+            <p style="font-weight: 600;">— Eng. Paul Kipchumba (Alumnus, Class of 1998)</p>
+        </div>
+    </div>
+</section>
+
+<!-- CALL TO ACTION + FORM (optional) -->
+<section class="content-section">
+    <div class="container">
+        <div class="cta-box" data-aos="fade-up">
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">Make a Difference Today</h2>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px;">Whether you give once or monthly, your support changes lives. All donations are tax‑exempt and go directly to student programmes.</p>
+            <a href="#contact" class="btn">Contact Us to Donate</a>
+        </div>
+    </div>
+</section>
+
+<!-- ADDITIONAL INFO: BANK DETAILS REPEAT / CONTACT -->
+<section class="content-section" style="background: var(--bg-light);">
+    <div class="container">
+        <div class="two-col-layout">
+            <div data-aos="fade-right">
+                <h3 style="color: var(--primary); font-size: 1.5rem;">Bank Details (Kenya)</h3>
+                <p style="margin-top: 20px;"><strong>Account Name:</strong> Paul Boit Boys High School<br>
+                <strong>Bank:</strong> Equity Bank Kenya<br>
+                <strong>Branch:</strong> Turbo<br>
+                <strong>Account Number:</strong> 1234567890<br>
+                <strong>SWIFT Code:</strong> EQBLKENA</p>
+                <p style="margin-top: 20px;"><strong>M-Pesa PayBill:</strong> 404040<br>
+                <strong>Account:</strong> DONATE</p>
+            </div>
+            <div data-aos="fade-left">
+                <h3 style="color: var(--primary); font-size: 1.5rem;">International Donations</h3>
+                <p style="margin-top: 20px;">We accept transfers via Western Union, PayPal, and wire. Please contact our finance office for details.</p>
+                <p><i class="fas fa-envelope" style="color: var(--accent);"></i> finance@paulboitboys.sc.ke<br>
+                <i class="fas fa-phone-alt" style="color: var(--accent);"></i> +254 712 345 678</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (exactly as in template) -->
+<footer class="footer">
+    <div class="container">
+        <div>
+            <div>
+                <h3 style="color: white;">Paul Boit Boys</h3>
+                <p style="margin-top: 16px;">Public boys boarding senior school, Turbo. CBC excellence since 1985.</p>
+            </div>
+            <div>
+                <h4 style="color: white;">Quick links</h4>
+                <ul style="list-style: none; margin-top: 16px;">
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#donations">Donations</a></li>
+                    <li><a href="#school-life">School Life</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: white;">Contact</h4>
+                <p><i class="fas fa-phone"></i> +254 712 345 678</p>
+                <p><i class="fas fa-envelope"></i> info@paulboitboys.sc.ke</p>
+            </div>
+        </div>
+        <hr>
+        <p style="text-align: center;">© 2026 Paul Boit Boys High School. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- AOS & Mobile Menu Script (unchanged) -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: false, mirror: true });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' ? false : true;
+        menuToggle.setAttribute('aria-expanded', expanded);
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 900) {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    // Dropdown toggle for mobile
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth < 900) {
+                e.preventDefault();
+                const parent = toggle.closest('.dropdown');
+                parent.classList.toggle('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>

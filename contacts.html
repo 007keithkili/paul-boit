@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us · Paul Boit Boys High School</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 40px;
+            }
+        }
+        :root {
+            --primary: #0a2b4c;
+            --primary-light: #1e4a7a;
+            --accent: #c9a357;
+            --accent-light: #e0b87b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #5e6f88;
+            --border-light: #e9edf2;
+        }
+
+        /* ===== TOP BAR (exactly as before) ===== */
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .top-bar .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            justify-content: center;
+        }
+        @media (min-width: 640px) {
+            .top-bar .container {
+                justify-content: flex-end;
+            }
+        }
+        .top-bar i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        /* ===== NAVBAR (exactly as before, with OUR SCHOOL dropdown) ===== */
+        .navbar {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+        @media (min-width: 480px) {
+            .logo-img {
+                height: 70px;
+            }
+        }
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        @media (min-width: 480px) {
+            .logo-text h1 {
+                font-size: 2rem;
+            }
+        }
+        .logo-text span {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: var(--accent);
+            display: block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        @media (min-width: 480px) {
+            .logo-text span {
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+        }
+        .menu-toggle {
+            display: block;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            transition: color 0.2s;
+            z-index: 1001;
+        }
+        .menu-toggle:hover {
+            color: var(--accent);
+        }
+        @media (min-width: 900px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+        .nav-links {
+            display: none;
+            width: 100%;
+            list-style: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+        }
+        .nav-links.active {
+            display: flex;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: 0.2s;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            padding: 10px 0;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+        .dropdown-menu {
+            list-style: none;
+            background: white;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 10px 0;
+            min-width: 220px;
+            z-index: 1001;
+        }
+        .dropdown-menu li a {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            text-transform: none;
+            font-weight: 500;
+        }
+        .dropdown-menu li a:hover {
+            background: var(--bg-light);
+            color: var(--accent);
+        }
+        @media (min-width: 900px) {
+            .nav-links {
+                display: flex !important;
+                width: auto;
+                flex-direction: row;
+                gap: 1.8rem;
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0;
+                align-items: center;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0;
+            }
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                display: none;
+            }
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            .dropdown:hover .dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+        }
+        @media (max-width: 899px) {
+            .dropdown-menu {
+                display: none;
+                margin-top: 5px;
+                margin-left: 20px;
+                box-shadow: none;
+                border: none;
+                border-left: 2px solid var(--accent);
+            }
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            .dropdown-toggle i {
+                margin-left: auto;
+            }
+            .dropdown.active .dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+        }
+
+        /* ===== PAGE HERO (with background image, same style as other pages) ===== */
+        .page-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            isolation: isolate;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(95deg, rgba(10,43,76,0.8) 0%, rgba(10,43,76,0.5) 100%);
+            z-index: 1;
+        }
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            padding: 60px 0;
+        }
+        .content-section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .two-col-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        @media (min-width: 768px) {
+            .two-col-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 40px;
+        }
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .contact-detail {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .contact-detail i {
+            font-size: 1.2rem;
+            margin: 0;
+            min-width: 25px;
+        }
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .form-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border-light);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .btn:hover {
+            background: var(--primary-light);
+        }
+
+        /* Map placeholder */
+        .map-container {
+            margin-top: 40px;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #e9edf2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-style: italic;
+            position: relative;
+        }
+        .map-placeholder i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        .footer a {
+            color: #b0c4d9;
+            text-decoration: none;
+        }
+        .footer .container > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media (min-width: 640px) {
+            .footer .container > div {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        hr {
+            border-color: #1e4a6f;
+            margin: 40px 0 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR (exactly as in template) -->
+<div class="top-bar">
+    <div class="container">
+        <span><i class="fas fa-phone-alt"></i> +254 712 345 678</span>
+        <span><i class="fas fa-envelope"></i> info@paulboitboys.sc.ke</span>
+        <span><i class="fas fa-map-marker-alt"></i> Turbo, Uasin Gishu</span>
+    </div>
+</div>
+
+<!-- NAVBAR (exactly as in template, with OUR SCHOOL dropdown) -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo-container">
+            <img src="https://i.pinimg.com/736x/6b/b2/b9/6bb2b98663efa77ce2d358a5f4f029e6.jpg" alt="Paul Boit Boys School Crest" class="logo-img">
+            <div class="logo-text">
+                <h1>Paul Boit Boys</h1>
+                <span>HIGH SCHOOL · EST. 1985</span>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">OUR SCHOOL <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#">Our Stories</a></li>
+                    <li><a href="#">Alumni</a></li>
+                    <li><a href="#">An Inspired School</a></li>
+                    <li><a href="#">Academic Research</a></li>
+                    <li><a href="#">Accreditations</a></li>
+                    <li><a href="#">Patrons</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="school-life.html">School Life</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="donations.html">Donations</a></li>
+            <li><a href="contact.html" style="color: var(--accent);">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO SECTION with background image (below header) -->
+<section class="page-hero">
+    <div class="container">
+        <h1 data-aos="fade-up">Get in Touch</h1>
+        <p data-aos="fade-up" data-aos-delay="50">We'd love to hear from you. Reach out with questions, inquiries, or to schedule a visit.</p>
+    </div>
+</section>
+
+<!-- CONTACT INFO & FORM (two columns) -->
+<section class="content-section">
+    <div class="container">
+        <div class="two-col-layout">
+            <!-- Left: Contact details -->
+            <div class="contact-card" data-aos="fade-right">
+                <i class="fas fa-address-card"></i>
+                <h3>Contact Information</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Paul Boit Boys High School</strong><br>
+                        P.O. Box 123,<br>
+                        Turbo, Uasin Gishu County, Kenya
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>Phone:</strong> +254 712 345 678<br>
+                        <strong>Office:</strong> +254 712 345 679
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email:</strong> info@paulboitboys.sc.ke<br>
+                        <strong>Admissions:</strong> admissions@paulboitboys.sc.ke
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Office Hours:</strong><br>
+                        Mon–Fri: 8:00 AM – 4:30 PM<br>
+                        Sat: 9:00 AM – 12:00 PM
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Right: Contact form -->
+            <div class="form-card" data-aos="fade-left">
+                <h3>Send us a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number (optional)">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAP SECTION (placeholder) -->
+<section class="content-section" style="background: var(--bg-light);">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Our Location</h2>
+        <div class="section-divider" data-aos="fade-up"></div>
+        <div class="map-container" data-aos="fade-up">
+            <!-- Placeholder map - replace the src with your actual Google Maps embed URL -->
+            <div class="map-placeholder">
+                <!-- <i class="fas fa-map-marked-alt"></i> <span>Map will be embedded here – replace with your iframe</span> -->
+                <!-- Uncomment below and add your actual iframe when ready -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.753627069512!2d35.012345!3d0.612345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMzYnNDQuNCJOIDM1wrAwMCc0NC40IkU!5e0!3m2!1sen!2ske!4v1620000000000" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 20px;"><i class="fas fa-car" style="color: var(--accent);"></i> Ample parking available on campus. Visitors are welcome during school hours.</p>
+    </div>
+</section>
+
+<!-- ADDITIONAL CONTACT: DIRECTIONS / NOTE -->
+<section class="content-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;" data-aos="fade-up">
+            <h3 style="color: var(--primary);">Need Directions?</h3>
+            <p>We are located along the Turbo–Kipkarren road, approximately 5 km from Turbo town. Look for the school sign at the main gate. For detailed directions, please contact our office.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (exactly as in template) -->
+<footer class="footer">
+    <div class="container">
+        <div>
+            <div>
+                <h3 style="color: white;">Paul Boit Boys</h3>
+                <p style="margin-top: 16px;">Public boys boarding senior school, Turbo. CBC excellence since 1985.</p>
+            </div>
+            <div>
+                <h4 style="color: white;">Quick links</h4>
+                <ul style="list-style: none; margin-top: 16px;">
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#donations">Donations</a></li>
+                    <li><a href="#school-life">School Life</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: white;">Contact</h4>
+                <p><i class="fas fa-phone"></i> +254 712 345 678</p>
+                <p><i class="fas fa-envelope"></i> info@paulboitboys.sc.ke</p>
+            </div>
+        </div>
+        <hr>
+        <p style="text-align: center;">© 2026 Paul Boit Boys High School. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- AOS & Mobile Menu Script (unchanged) -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: false, mirror: true });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' ? false : true;
+        menuToggle.setAttribute('aria-expanded', expanded);
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 900) {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    // Dropdown toggle for mobile
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth < 900) {
+                e.preventDefault();
+                const parent = toggle.closest('.dropdown');
+                parent.classList.toggle('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>
