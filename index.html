@@ -260,7 +260,7 @@
             }
         }
 
-        /* ===== HERO (with slideshow) ===== */
+        /* ===== HERO (with slideshow) – overlay removed ===== */
         .hero {
             position: relative;
             min-height: 60vh;
@@ -281,7 +281,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(95deg, rgba(10,43,76,0.85) 0%, rgba(10,43,76,0.6) 50%, rgba(0,0,0,0.3) 100%);
+            background: transparent; /* ← removed blue film, now clear */
             z-index: 1;
         }
         .hero .container {
@@ -725,7 +725,7 @@
     </div>
 </nav>
 
-<!-- HERO with live slideshow -->
+<!-- HERO with live slideshow – now with clear background image -->
 <section class="hero" id="hero-slideshow">
     <div class="container">
         <span class="hero-badge" data-aos="fade-down">PUBLIC BOYS BOARDING · GRADES 10-12</span>
